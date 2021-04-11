@@ -1,6 +1,7 @@
-import './App.css';
 import React from 'react';
+import './App.css';
 import _ from 'lodash';
+
 const App = () => {
   const [name, setName] = React.useState(null);
 
@@ -9,10 +10,15 @@ const App = () => {
   const onChange = (value) => {
     fetch(`https://api.mocki.io/v1/b043df5a`) ///generic api response.
       .then((res) => res.json())
-      .then((res) => setName(res));
+      .then((res) => {
+        console.log(res);
+        setName(res);
+      });
   };
 
-  const debounceOnChange = React.useCallback(_.debounce(onChange, delay), [delay,]); // eslint-disable-line react-hooks/exhaustive-deps
+  const debounceOnChange = React.useCallback(_.debounce(onChange, delay), [
+    delay,
+  ]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="App">
@@ -30,7 +36,7 @@ const App = () => {
 
       <p>Debounce time: {delay}ms</p>
 
-      <button onClick={(e) => setName(null)}>Clear Reponse</button>
+      <button onClick={(e) => setName(null)}>Clear Response</button>
       {name && name.map((item, index) => <li key={index}>{item.city}</li>)}
     </div>
   );
