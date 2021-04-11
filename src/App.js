@@ -23,6 +23,7 @@ const App = () => {
   return (
     <div className="App">
       <h2>Debounce Api Example</h2>
+
       <input
         placeholder="Input field of your choice"
         onChange={(e) => debounceOnChange(e.target.value)}
@@ -37,6 +38,7 @@ const App = () => {
       <p>Debounce time: {delay}ms</p>
 
       <button onClick={(e) => setName(null)}>Clear Response</button>
+
       {name && name.map((item, index) => <li key={index}>{item.city}</li>)}
     </div>
   );
